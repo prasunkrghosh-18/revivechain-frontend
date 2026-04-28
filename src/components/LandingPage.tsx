@@ -3,9 +3,10 @@ import { ArrowRight, Box, Camera, RefreshCw, BarChart3, Leaf, DollarSign } from 
 
 interface LandingPageProps {
   onGetStarted: () => void;
+  onViewAdmin: () => void;
 }
 
-export default function LandingPage({ onGetStarted }: LandingPageProps) {
+export default function LandingPage({ onGetStarted, onViewAdmin }: LandingPageProps) {
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -40,7 +41,10 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
               Launch Customer Portal
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="px-8 py-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white font-bold rounded-lg transition-all w-full sm:w-auto backdrop-blur-sm">
+            <button 
+              onClick={onViewAdmin}
+              className="px-8 py-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white font-bold rounded-lg transition-all w-full sm:w-auto backdrop-blur-sm"
+            >
               View Admin Demo
             </button>
           </div>

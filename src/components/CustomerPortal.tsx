@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { UploadCloud, Leaf, Package, MapPin, Loader2, RefreshCw, Scan, Network, BarChart3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 

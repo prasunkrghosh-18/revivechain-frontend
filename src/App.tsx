@@ -10,14 +10,14 @@ import CustomerPortal from './components/CustomerPortal';
 import AdminDashboard from './components/AdminDashboard';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'customer' | 'admin'>('landing');
+  const [activeView, setActiveView] = useState<'landing' | 'customer' | 'admin'>('landing');
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans flex flex-col selection:bg-emerald-500/30 selection:text-emerald-200">
       {/* Navigation */}
       <nav className="h-20 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md px-6 md:px-8 flex items-center justify-between shrink-0 sticky top-0 z-50">
         <button 
-          onClick={() => setCurrentView('landing')}
+          onClick={() => setActiveView('landing')}
           className="flex items-center gap-3 shrink-0"
         >
           <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.4)]">
@@ -31,15 +31,15 @@ export default function App() {
         
         <div className="hidden md:flex items-center gap-8 bg-slate-900 border border-slate-800 rounded-full px-6 py-2 shadow-inner">
           <button 
-            onClick={() => setCurrentView('customer')}
-            className={`transition-colors text-sm font-bold tracking-wide ${currentView === 'customer' ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
+            onClick={() => setActiveView('customer')}
+            className={`transition-colors text-sm font-bold tracking-wide ${activeView === 'customer' ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
           >
             Customer Portal
           </button>
           <div className="w-px h-4 bg-slate-800"></div>
           <button 
-            onClick={() => setCurrentView('admin')}
-            className={`transition-colors text-sm font-bold tracking-wide ${currentView === 'admin' ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
+            onClick={() => setActiveView('admin')}
+            className={`transition-colors text-sm font-bold tracking-wide ${activeView === 'admin' ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
           >
             Admin Dashboard
           </button>
@@ -59,13 +59,13 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col justify-start">
-        {currentView === 'landing' && <LandingPage onGetStarted={() => setCurrentView('customer')} />}
-        {currentView === 'customer' && <CustomerPortal />}
-        {currentView === 'admin' && <AdminDashboard />}
+        {activeView === 'landing' && <LandingPage onGetStarted={() => setActiveView('customer')} onViewAdmin={() => setActiveView('admin')} />}
+        {activeView === 'customer' && <CustomerPortal />}
+        {activeView === 'admin' && <AdminDashboard />}
       </main>
 
       {/* Bottom Impact Bar */}
-      {currentView !== 'landing' && (
+      {activeView !== 'landing' && (
         <footer className="h-12 shrink-0 bg-black border-t border-slate-800/50 px-8 flex items-center justify-between text-slate-400 text-[10px] font-bold tracking-[0.2em] uppercase max-md:hidden">
           <div className="flex items-center gap-8">
             <span>Network Status: Optimal</span>
